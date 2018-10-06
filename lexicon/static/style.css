@@ -1,0 +1,42 @@
+body {
+    background-image: url("/static/images/backgrounds1.jpg");
+    color: white;
+}
+
+.div-table {
+    border: 1in;
+    border-color: blue;
+    color: white;
+    font-size: .45cm;
+    border: 2px double blanchedalmond;
+    border-radius: 1cm;
+    padding: .5cm 1cm .5cm .5in;
+    margin: 0 auto;
+    width: 800px;
+    z-index: 1000;
+    /* border-width: 2px; */
+    box-sizing: border-box;
+}
+
+p {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    align-content: center;
+    font-style: normal;
+    padding: 1cm 0 1cm 0;
+    color: white;
+}
+
+#page {
+    /* align-content: center; */
+    text-align: center;
+    padding-top: 1cm;
+    padding-bottom: 1cm;
+    /* padding: 1cm 1in 1cm 1in; */
+    /* margin: 0 auto; */
+    color: white;
+}
+
+#page1 {
+    display: inline;
+}

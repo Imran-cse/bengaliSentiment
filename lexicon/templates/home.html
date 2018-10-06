@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  </head>
+  <body>
+    <div>
+      <p>Please enter the corresponding polarity value for the words.
+        The value must be between -4 to +4</p>
+    </div>
+    <div class="div-table">
+        <form action="" method="post">
+          {% csrf_token %}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Words</th>
+                  <th>Polarity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for word in word_list %}
+                <tr>
+                  <td scope="row">{{ word.word }}</td>
+                  <td><input type="number" step=".1" min="-4" max="4" name="polarity" id="polarity" value="{{ polarity_value }}" required></td>
+                  <input type="hidden" name="word_id" value="{{ word.id }}">
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    <div class="div-pagin" id="page">
+        <div class="pagination" id="page1">
+            <span class="step-links">
+                {% if word_list.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ word_list.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ word_list.number }} of {{ word_list.paginator.num_pages }}.
+                </span>
+        
+                {% if word_list.has_next %}
+                    <a href="?page={{ word_list.next_page_number }}">next</a>
+                    <a href="?page={{ word_list.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  </body>
+</html>
